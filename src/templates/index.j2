@@ -1,0 +1,31 @@
+{% extends "template.j2" %}
+
+{% block facets %}
+
+<div class="well hidden-sm">
+
+<h4>Resources</h4>
+<ul class="list-group">
+  <li class="list-group-item">Instances</li>
+  <li class="list-group-item">ELBs</li>
+  <li class="list-group-item">RDS</li>
+  <li class="list-group-item">Images</li>
+  <li class="list-group-item">Volumes</li>
+</ul>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<hr/>
+
+<table class="table table-striped">
+{% for instance in instances %}
+<tr>
+  <td><a href="/instance/{{instance['awsid']}}">{{instance['awsid']}}  </a></td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}
