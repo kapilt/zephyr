@@ -61,6 +61,7 @@ class Image(DynamicDocument):
     def sync(cls, session, region):
         data = _call(session, 'ec2', 'DescribeImages', region, owners=['self'])
         for r_img in data.get("Images", ()):
+            # DescribeImageAttribute?
             _sync(cls, "ImageId", r_img)
 
 
@@ -69,8 +70,10 @@ class Snapshot(DynamicDocument):
 
     @classmethod
     def sync(cls, session, region):
-        data = _call(session, 'ec2', 'DescribeSnapshots', region, owner_ids=['self'])
+        data = _call(
+            session, 'ec2', 'DescribeSnapshots', region, owner_ids=['self'])
         for r_snap in data.get('Snapshots', ()):
+            # DescribeSnapshotAttribute
             _sync(cls, "SnapshotId", r_snap)
 
 
@@ -102,6 +105,8 @@ class Database(DynamicDocument):
     def sync(cls, session, region):
         data = _call(session, 'rds', 'DescribeDBInstances', region)
         for r_db in data.get('DBInstances', ()):
+            tags = _call(session, 'rds', r_db['DBInstanceIdentifier'])
+            r_db['Tags'] = tags['TagList']
             _sync(cls, "DBInstanceIdentifier", r_db)
 
 
@@ -112,6 +117,7 @@ class LoadBalancer(DynamicDocument):
     def sync(cls, session, region):
         data = _call(session, 'elb', 'DescribeLoadBalancers', region)
         for r_elb in data.get('LoadBalancerDescriptions', ()):
+            # DescribeInstanceHealth?
             _sync(cls, "LoadBalancerName", r_elb)
 
 
@@ -195,4 +201,3 @@ if __name__ == '__main__':
         traceback.print_exc()
         pdb.post_mortem(sys.exc_info()[-1])
         raise
-        

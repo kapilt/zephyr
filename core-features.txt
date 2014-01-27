@@ -1,0 +1,23 @@
+
+
+App overview
+
+ - see all instances of app
+ - deploy new version of the app
+ - deploy new version
+ - see changes to infrastructure
+ - see open tickets for application
+
+Network view
+
+ - map network topology
+
+
+----------------------------
+
+Cloud aware
+
+ - Backup
+
+ - Intrusion Detection
+

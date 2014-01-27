@@ -1,0 +1,49 @@
+{% extends "template.j2" %}
+
+{% block facets %}
+
+<div class="well hidden-sm">
+
+<h4>Resources</h4>
+<ul class="list-group">
+  <li class="list-group-item">Instances</li>
+  <li class="list-group-item">ELBs</li>
+  <li class="list-group-item">RDS</li>
+  <li class="list-group-item">Images</li>
+  <li class="list-group-item">Volumes</li>
+</ul>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<hr/>
+
+<h2> Load Balancers </h2>
+<table class="table table-striped">
+{% for elb in app.get_loadbalancers() %}
+
+{% endfor %}
+</table>
+
+
+<h2> Databases </h2>
+<table class="table table-striped">
+{% for instance in app.get_dbs() %}
+
+{% endfor %}
+</table>
+
+<h2> Instances </h2>
+<table class="table table-striped">
+{% for instance in instances %}
+<tr>
+  <td><a href="/instances/{{instance['InstanceId']}}">{{instance.name}}</a></td>
+</tr>
+{% endfor %}
+</table>
+
+
+
+{% endblock %}

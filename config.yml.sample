@@ -1,0 +1,24 @@
+
+database:
+  host: localhost
+  port: 27017
+
+accounts:
+  internal:
+    access-key: abc
+    secret-key: 123
+    regions:
+      - us-gov-west-1
+  prod:
+    access-key: abc
+    secret-key: 123
+    billing-bucket: Programmatic_Billing_Access
+    regions:
+      - us-east-1
+      - us-west-2
+  dev:
+    access-key: abc
+    secret-key: 123
+    regions:
+      - us-east-1
+      - us-west-2
